@@ -1,7 +1,7 @@
 const jwt  = require("jsonwebtoken")
 const bcrypt = require("bcrypt")
 
-const verifyToken = async(req,res,next)=>{
+const verifyToken = (req,res,next)=>{
 
     const authHeader = req.header('Authorization');
 
@@ -15,7 +15,9 @@ const verifyToken = async(req,res,next)=>{
     }
 
     try{
-        const decode = await jwt.verify(token,process.env.SECRET_KEY);
+        const decode =  jwt.verify(token,process.env.SECRET_KEY);
+        req.user = decode;
+        next();
     }
     catch(error){
         return res.status(400).json({message : "Invalid token!"})
