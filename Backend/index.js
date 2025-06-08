@@ -1,7 +1,5 @@
 const express = require("express")
 const connectDB = require("./config/db")
-const login = require("./model/index")
-const register = require("./model/index")
 const routes = require('./routes/index')
 require('dotenv').config();
 
