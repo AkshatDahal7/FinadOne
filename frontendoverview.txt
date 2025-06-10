@@ -1,0 +1,50 @@
+DashboardOverview.jsx       # Main dashboard layout
+FinancialSummary.jsx       # Revenue, expenses, profit cards
+RecentTransactions.jsx     # Latest transactions table
+SalesChart.jsx            # Sales trend chart
+ExpenseChart.jsx          # Expense breakdown chart
+CashFlowChart.jsx         # Cash flow visualization
+QuickActions.jsx          # Quick action buttons
+AlertsNotifications.jsx   # Overdue bills, low inventory alerts
+
+
+
+
+SalesForm.jsx             # Create new sale/invoice form
+SalesTable.jsx            # List all sales transactions
+SalesChart.jsx            # Sales analytics charts
+InvoiceGenerator.jsx      # Generate/print invoices
+CustomerSelector.jsx      # Dropdown/search for customers
+PaymentTracker.jsx        # Track payments received
+SalesFilters.jsx          # Filter by date, customer, status
+
+
+
+
+PurchaseForm.jsx          # Record new purchase form
+PurchaseTable.jsx         # List all purchases
+BillTracker.jsx           # Track unpaid bills
+SupplierSelector.jsx      # Choose suppliers
+ExpenseCategories.jsx     # Categorize expenses
+PurchaseFilters.jsx       # Filter purchases
+PaymentScheduler.jsx      # Schedule bill payments
+
+
+
+BankAccountList.jsx       # Show all bank accounts
+TransactionForm.jsx       # Add bank transactions
+TransactionTable.jsx      # List bank transactions
+AccountBalance.jsx        # Show account balances
+TransferForm.jsx          # Transfer between accounts
+ReconciliationTool.jsx    # Bank reconciliation
+TransactionFilters.jsx    # Filter transactions
+
+
+
+Button.jsx               # Reusable button
+Modal.jsx               # Popup modals
+Table.jsx               # Generic table component
+DatePicker.jsx          # Date input
+SearchInput.jsx         # Search functionality
+LoadingSpinner.jsx      # Loading states
+ErrorMessage.jsx        # Error display
