@@ -1,0 +1,123 @@
+/* DashboardOverview.css */
+
+.dashboard-overview {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  display: grid;
+  grid-row: auto;
+  grid-column: auto;
+}
+
+.dashboard-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Revenue Card */
+.Trevenue-card {
+  background-color: #e8f5e8;
+  border: 2px solid #28a745;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.revenue-amount {
+  font-size: 32px;
+  font-weight: bold;
+  color: #28a745;
+  margin-top: 10px;
+}
+
+/* Expense Card */
+.Texpense-card {
+  background-color: #ffeaea;
+  border: 2px solid #dc3545;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.expense-amount {
+  font-size: 32px;
+  font-weight: bold;
+  color: #dc3545;
+  margin-top: 10px;
+}
+
+/* Profit Card */
+.Tprofit-card {
+  background-color: #e3f2fd;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profit-amount {
+  font-size: 32px;
+  font-weight: bold;
+  color: #007bff;
+  margin-top: 10px;
+}
+
+/* Card Labels */
+.Trevenue-card,
+.Texpense-card,
+.Tprofit-card {
+  font-size: 18px;
+  font-weight: 500;
+  color: #555;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .dashboard-overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+    grid-template-areas: 
+      "title title title"
+      "revenue expense profit";
+  }
+  
+  .dashboard-title {
+    grid-area: title;
+  }
+  
+  .Trevenue-card {
+    grid-area: revenue;
+    margin-bottom: 0;
+  }
+  
+  .Texpense-card {
+    grid-area: expense;
+    margin-bottom: 0;
+  }
+  
+  .Tprofit-card {
+    grid-area: profit;
+    margin-bottom: 0;
+  }
+}
+
+/* Hover Effects */
+.Trevenue-card:hover,
+.Texpense-card:hover,
+.Tprofit-card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
