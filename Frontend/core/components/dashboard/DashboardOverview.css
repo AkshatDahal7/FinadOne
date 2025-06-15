@@ -1,16 +1,46 @@
 /* DashboardOverview.css */
 
 .dashboard-overview {
+  margin-left: 15vw;       /* space for sidebar */
+  margin-top: 60px;        /* space for navbar */
   padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: calc(100vw - 15vw);  /* full viewport width minus sidebar */
+  min-height: calc(100vh - 60px);
+  background: white;
   font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  overflow-y: auto;
+  display: flex;           /* center the card */
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.card {
+  width: 100%;             /* fill dashboard-overview width */
+  max-width: 1200px;       /* limit max width */
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
   display: grid;
-  grid-row: auto;
-  grid-column: auto;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 20px;
+  grid-template-areas:
+    "title title title"
+    "revenue expense profit";
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .dashboard-title {
+  grid-area: title;
   font-size: 28px;
   font-weight: bold;
   color: #333;
@@ -18,33 +48,60 @@
   text-align: center;
 }
 
-/* Revenue Card */
+/* Cards */
+
 .Trevenue-card {
+  grid-area: revenue;
   background-color: #e8f5e8;
   border: 2px solid #28a745;
   border-radius: 10px;
   padding: 20px;
-  margin-bottom: 20px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-size: 18px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
+
+.Texpense-card {
+  grid-area: expense;
+  background-color: #ffeaea;
+  border: 2px solid #dc3545;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-size: 18px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.Tprofit-card {
+  grid-area: profit;
+  background-color: #e3f2fd;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-size: 18px;
+  font-weight: 500;
+  color: #555;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Amount styles */
 
 .revenue-amount {
   font-size: 32px;
   font-weight: bold;
   color: #28a745;
   margin-top: 10px;
-}
-
-/* Expense Card */
-.Texpense-card {
-  background-color: #ffeaea;
-  border: 2px solid #dc3545;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .expense-amount {
@@ -54,17 +111,6 @@
   margin-top: 10px;
 }
 
-/* Profit Card */
-.Tprofit-card {
-  background-color: #e3f2fd;
-  border: 2px solid #007bff;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
 .profit-amount {
   font-size: 32px;
   font-weight: bold;
@@ -72,52 +118,23 @@
   margin-top: 10px;
 }
 
-/* Card Labels */
-.Trevenue-card,
-.Texpense-card,
-.Tprofit-card {
-  font-size: 18px;
-  font-weight: 500;
-  color: #555;
-}
-
-/* Responsive Design */
-@media (min-width: 768px) {
-  .dashboard-overview {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 20px;
-    grid-template-areas: 
-      "title title title"
-      "revenue expense profit";
-  }
-  
-  .dashboard-title {
-    grid-area: title;
-  }
-  
-  .Trevenue-card {
-    grid-area: revenue;
-    margin-bottom: 0;
-  }
-  
-  .Texpense-card {
-    grid-area: expense;
-    margin-bottom: 0;
-  }
-  
-  .Tprofit-card {
-    grid-area: profit;
-    margin-bottom: 0;
-  }
-}
-
-/* Hover Effects */
+/* Hover effect on individual cards */
 .Trevenue-card:hover,
 .Texpense-card:hover,
 .Tprofit-card:hover {
   transform: translateY(-5px);
-  transition: transform 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
   cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .card {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "revenue"
+      "expense"
+      "profit";
+  }
 }

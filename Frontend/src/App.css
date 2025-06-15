@@ -1,7 +1,27 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  
   text-align: center;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.layout-container {
+  display: flex;
+  height: calc(100vh - 60px); /* assuming NavBar height is ~60px */
+}
+
+.main-content {
+  flex: 1;
+  /* padding: 1rem; */
+  background-color: #f9fafb; /* light background to contrast sidebar */
+  overflow-y: auto;
+}

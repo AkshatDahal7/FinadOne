@@ -1,0 +1,125 @@
+/* NAVBAR STYLES - 5 BEST COLOR COMBINATIONS */
+
+/* 1. MODERN DARK (GitHub/Vercel Style) - RECOMMENDED */
+.Navbar-overview {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+  background-color: #0f172a; /* Slate 900 */
+  padding: 1rem 2rem;
+  gap: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid #1e293b;
+}
+
+.nav-item {
+  color: #cbd5e1; /* Slate 300 */
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background-color: #1e293b; /* Slate 800 */
+  color: #f1f5f9; /* Slate 100 */
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item.active {
+  background-color: #3b82f6; /* Blue 500 */
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+}
+
+/* 2. CLEAN WHITE (Notion/Apple Style) */
+.Navbar-overview.white-theme {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.white-theme .nav-item {
+  color: #374151; /* Gray 700 */
+}
+
+.white-theme .nav-item:hover {
+  background-color: #f9fafb; /* Gray 50 */
+  color: #111827; /* Gray 900 */
+}
+
+.white-theme .nav-item.active {
+  background-color: #3b82f6; /* Blue 500 */
+  color: #ffffff;
+}
+
+/* 3. DEEP NAVY (Stripe/Professional) */
+.Navbar-overview.navy-theme {
+  background-color: #0c1e35; /* Custom navy */
+  border-bottom: 1px solid #1a365d;
+}
+
+.navy-theme .nav-item {
+  color: #90cdf4; /* Blue 300 */
+}
+
+.navy-theme .nav-item:hover {
+  background-color: #1a365d; /* Blue 900 */
+  color: #bfdbfe; /* Blue 200 */
+}
+
+.navy-theme .nav-item.active {
+  background-color: #2563eb; /* Blue 600 */
+  color: #ffffff;
+}
+
+/* 4. GRADIENT MODERN (Trendy/Creative) */
+.Navbar-overview.gradient-theme {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-bottom: none;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+}
+
+.gradient-theme .nav-item {
+  color: #e2e8f0; /* Slate 200 */
+}
+
+.gradient-theme .nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+}
+
+.gradient-theme .nav-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+}
+
+/* 5. EMERALD PROFESSIONAL (Spotify/Money Apps) */
+.Navbar-overview.emerald-theme {
+  background-color: #064e3b; /* Emerald 900 */
+  border-bottom: 1px solid #065f46;
+}
+
+.emerald-theme .nav-item {
+  color: #a7f3d0; /* Emerald 200 */
+}
+
+.emerald-theme .nav-item:hover {
+  background-color: #065f46; /* Emerald 800 */
+  color: #d1fae5; /* Emerald 100 */
+}
+
+.emerald-theme .nav-item.active {
+  background-color: #10b981; /* Emerald 500 */
+  color: #ffffff;
+}

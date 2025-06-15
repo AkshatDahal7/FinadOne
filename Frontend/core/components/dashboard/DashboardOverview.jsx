@@ -6,8 +6,9 @@ const DashboardOverview = () =>{
     const totalProfit = totalRevenue - totalExpenses;
     return(
         <div className="dashboard-overview">
+            <div className="card">
                 <div className="dashboard-title">
-                    Dashboard
+                    Today's Summary
                 </div>
                 <div className="Trevenue-card">
                     Total revenue <div className="revenue-amount">${totalRevenue}</div>
@@ -23,6 +24,8 @@ const DashboardOverview = () =>{
                     <div className="profit-amount">
                     ${totalProfit}
                     </div>
+
+                </div>
                 </div>
         </div>
     )
