@@ -1,18 +1,8 @@
 import React from "react";
-import { CiSettings } from "react-icons/ci";
-const TopBar=()=>{
-    return(
-        <div className="NavBarWhole">
-            <div className="NavBarTop">
-                <div className="profile">
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-                </div>
-                <div className="settings">
-                    <CiSettings />
-                </div>
-            </div>
-
-        </div>
-    )
+const NavBar = () =>{
+    
 }
-export default TopBar;
+export default NavBar
