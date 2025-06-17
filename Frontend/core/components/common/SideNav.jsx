@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Sidenav.css'
+
 const SideNav = () => {
   const [activeSection, setActiveSection] = useState("Dashboard");
   const [activePage, setActivePage] = useState("");
@@ -24,7 +25,8 @@ const SideNav = () => {
         className={`sidebar-item ${activeSection === "Dashboard" ? "active" : ""}`}
         onClick={() => handleSectionClick("Dashboard")}
       >
-        🏠 Dashboard
+        <span className="sidebar-icon">🏠</span>
+        <span className="sidebar-text">Dashboard</span>
       </div>
 
       {/* Sales Section */}
@@ -33,7 +35,8 @@ const SideNav = () => {
           className={`sidebar-item ${activeSection === "Sales" ? "active" : ""}`}
           onClick={() => handleSectionClick("Sales")}
         >
-          💰 Sales
+          <span className="sidebar-icon">💰</span>
+          <span className="sidebar-text">Sales</span>
         </div>
         {activeSection === "Sales" && (
           <div className="submenu">
@@ -41,13 +44,15 @@ const SideNav = () => {
               className={`submenu-item ${activePage === "Invoice" ? "active" : ""}`}
               onClick={() => handlePageClick("Invoice", "/sales/invoice")}
             >
-              📄 Invoice
+              <span className="sidebar-icon">📄</span>
+              <span className="sidebar-text">Invoice</span>
             </div>
             <div
               className={`submenu-item ${activePage === "Customer" ? "active" : ""}`}
               onClick={() => handlePageClick("Customer", "/sales/customer")}
             >
-              👤 Customer
+              <span className="sidebar-icon">👤</span>
+              <span className="sidebar-text">Customer</span>
             </div>
           </div>
         )}
@@ -59,7 +64,8 @@ const SideNav = () => {
           className={`sidebar-item ${activeSection === "Purchases" ? "active" : ""}`}
           onClick={() => handleSectionClick("Purchases")}
         >
-          🛒 Purchases
+          <span className="sidebar-icon">🛒</span>
+          <span className="sidebar-text">Purchases</span>
         </div>
         {activeSection === "Purchases" && (
           <div className="submenu">
@@ -67,13 +73,15 @@ const SideNav = () => {
               className={`submenu-item ${activePage === "Bill" ? "active" : ""}`}
               onClick={() => handlePageClick("Bill", "/purchases/bill")}
             >
-              🧾 Bill
+              <span className="sidebar-icon">🧾</span>
+              <span className="sidebar-text">Bill</span>
             </div>
             <div
               className={`submenu-item ${activePage === "Vendor" ? "active" : ""}`}
               onClick={() => handlePageClick("Vendor", "/purchases/vendor")}
             >
-              🏢 Vendor
+              <span className="sidebar-icon">🏢</span>
+              <span className="sidebar-text">Vendor</span>
             </div>
           </div>
         )}
@@ -85,7 +93,8 @@ const SideNav = () => {
           className={`sidebar-item ${activeSection === "Banking" ? "active" : ""}`}
           onClick={() => handleSectionClick("Banking")}
         >
-          🏦 Banking
+          <span className="sidebar-icon">🏦</span>
+          <span className="sidebar-text">Banking</span>
         </div>
         {activeSection === "Banking" && (
           <div className="submenu">
@@ -93,25 +102,29 @@ const SideNav = () => {
               className={`submenu-item ${activePage === "Accounts" ? "active" : ""}`}
               onClick={() => handlePageClick("Accounts", "/banking/accounts")}
             >
-              💳 Accounts
+              <span className="sidebar-icon">💳</span>
+              <span className="sidebar-text">Accounts</span>
             </div>
             <div
               className={`submenu-item ${activePage === "Transactions" ? "active" : ""}`}
               onClick={() => handlePageClick("Transactions", "/banking/transactions")}
             >
-              💸 Transactions
+              <span className="sidebar-icon">💸</span>
+              <span className="sidebar-text">Transactions</span>
             </div>
             <div
               className={`submenu-item ${activePage === "Reports" ? "active" : ""}`}
               onClick={() => handlePageClick("Reports", "/banking/reports")}
             >
-              📊 Reports
+              <span className="sidebar-icon">📊</span>
+              <span className="sidebar-text">Reports</span>
             </div>
             <div
               className={`submenu-item ${activePage === "Balance" ? "active" : ""}`}
               onClick={() => handlePageClick("Balance", "/banking/balance")}
             >
-              ⚖️ Balance
+              <span className="sidebar-icon">⚖️</span>
+              <span className="sidebar-text">Balance</span>
             </div>
           </div>
         )}

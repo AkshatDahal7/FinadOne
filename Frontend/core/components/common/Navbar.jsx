@@ -2,6 +2,10 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './NavBar.css'
+import { IoSettingsOutline } from "react-icons/io5";
+import { FaHome } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
+
 const NavBar = () =>{
     const [CurrentPage , setCurrentPage] = useState("")
     const navigate = useNavigate();
@@ -16,19 +20,20 @@ const NavBar = () =>{
             <div 
         className={`nav-item ${CurrentPage == "/"?"active":""}`}
         onClick={()=>handlePageChange("/")}
-        >Home</div>
+        ><FaHome /></div>
 
          <div
-        className={`nav-item ${CurrentPage === "/about" ? "active" : ""}`}
-        onClick={() => handlePageChange("/about")}
+        className={`nav-item ${CurrentPage === "/setting" ? "active" : ""}`}
+        onClick={() => handlePageChange("/setting")}
       >
-        ℹ️ About
+        <IoSettingsOutline />
       </div>
       <div
         className={`nav-item ${CurrentPage === "/contact" ? "active" : ""}`}
         onClick={() => handlePageChange("/contact")}
       >
-        📞 Contact
+        <FaUserCircle />
+
       </div>
         </div>
         

@@ -1,0 +1,305 @@
+/* UNIFIED PROFIT LOSS - Matches modern dashboard theme */
+
+.profit-loss-overview {
+  margin-left: 15vw;       /* space for sidebar - matches dashboard */     /* space for navbar - matches dashboard */
+  padding: 20px;
+  /* width: calc(100vw - 15vw); */
+  /* min-height: calc(100vh - 60px); */
+  background: #f8fafc;     /* Light slate background - matches dashboard */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-sizing: border-box;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  /* grid-column: auto; */
+}
+
+.card {
+  width: 100%;
+  max-width: 1200px;
+  background-color: #ffffff;
+  border-radius: 16px;      /* More modern rounded corners - matches dashboard */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb; /* Subtle border - matches dashboard */
+  padding: 32px;            /* More padding - matches dashboard */
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);  /* Subtle lift - matches dashboard */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-title {
+  font-size: 32px;          /* Larger title - matches dashboard */
+  font-weight: 700;         /* Bolder - matches dashboard */
+  color: #111827;           /* Dark gray - matches dashboard */
+  margin-bottom: 32px;      /* Matches dashboard spacing */
+  text-align: center;
+  letter-spacing: -0.025em; /* Tighter letter spacing - matches dashboard */
+  border-bottom: none;      /* Remove border to match dashboard style */
+  padding-bottom: 0;        /* Remove padding to match dashboard */
+}
+
+/* SUMMARY CARDS - Updated to match dashboard metric cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 columns like dashboard */
+  gap: 20px;                /* Increased gap - matches dashboard */
+  margin-bottom: 32px;      /* Matches dashboard spacing */
+}
+
+.revenue-card {
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%); /* Matches dashboard */
+  border: 1px solid #22c55e;  /* Green 500 - matches dashboard */
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(34, 197, 94, 0.1);
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;           /* Modern gray - matches dashboard */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.revenue-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+.expense-card {
+  background: linear-gradient(135deg, #fef2f2 0%, #fef7f7 100%);
+  border: 1px solid #ef4444;  /* Red 500 - matches dashboard */
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(239, 68, 68, 0.1);
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.expense-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.profit-card {
+  background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+  border: 1px solid #3b82f6;  /* Blue 500 - matches dashboard */
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(59, 130, 246, 0.1);
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.profit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #2563eb);
+}
+
+/* MODERN HOVER EFFECTS - Matches dashboard */
+.revenue-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.2), 0 2px 4px -1px rgba(34, 197, 94, 0.1);
+  border-color: #16a34a;
+}
+
+.expense-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.2), 0 2px 4px -1px rgba(239, 68, 68, 0.1);
+  border-color: #dc2626;
+}
+
+.profit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2), 0 2px 4px -1px rgba(59, 130, 246, 0.1);
+  border-color: #2563eb;
+}
+
+/* CARD LABELS - Updated to match dashboard style */
+.card-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;           /* Gray 500 - matches dashboard */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+/* AMOUNT STYLES - Updated to match dashboard */
+.revenue-amount {
+  font-size: 36px;          /* Larger numbers - matches dashboard */
+  font-weight: 800;         /* Extra bold - matches dashboard */
+  color: #16a34a;           /* Green 600 - matches dashboard */
+  margin-top: 12px;
+  letter-spacing: -0.02em;
+}
+
+.expense-amount {
+  font-size: 36px;
+  font-weight: 800;
+  color: #dc2626;           /* Red 600 - matches dashboard */
+  margin-top: 12px;
+  letter-spacing: -0.02em;
+}
+
+.profit-amount {
+  font-size: 36px;
+  font-weight: 800;
+  margin-top: 12px;
+  letter-spacing: -0.02em;
+}
+
+.profit-amount.positive {
+  color: #16a34a;           /* Green 600 - matches dashboard */
+}
+
+.profit-amount.negative {
+  color: #dc2626;           /* Red 600 - matches dashboard */
+}
+
+/* CHART CONTAINER - Updated to match modern style */
+.chart-container {
+  height: 400px;
+  width: 100%;
+  margin-top: 32px;         /* Matches dashboard spacing */
+  padding: 24px;            /* Matches dashboard padding */
+  background: #ffffff;      /* White background like cards */
+  border-radius: 12px;      /* Matches modern rounded corners */
+  border: 1px solid #e5e7eb; /* Matches dashboard border */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.chart-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* DARK MODE VARIANT - Matches dashboard dark mode */
+.profit-loss-overview.dark-mode {
+  background: #0f172a;      /* Matches navbar dark theme */
+}
+
+.dark-mode .card {
+  background-color: #1e293b; /* Slate 800 */
+  border: 1px solid #334155;
+  color: #f1f5f9;
+}
+
+.dark-mode .dashboard-title {
+  color: #f1f5f9;
+}
+
+.dark-mode .revenue-card {
+  background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+  border-color: #10b981;
+  color: #d1fae5;
+}
+
+.dark-mode .expense-card {
+  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
+  border-color: #f87171;
+  color: #fecaca;
+}
+
+.dark-mode .profit-card {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
+  border-color: #60a5fa;
+  color: #dbeafe;
+}
+
+.dark-mode .chart-container {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+}
+
+/* RESPONSIVE DESIGN - Updated to match dashboard */
+@media (max-width: 767px) {
+  .profit-loss-overview {
+    margin-left: 0;          /* Remove sidebar margin on mobile */
+    margin-top: 0;           /* Remove navbar margin on mobile */
+    width: 100vw;
+    min-height: 100vh;
+    padding: 16px;
+  }
+  
+  .card {
+    padding: 20px;
+    border-radius: 12px;     /* Slightly smaller radius on mobile */
+  }
+  
+  .summary-cards {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .dashboard-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .revenue-amount,
+  .expense-amount,
+  .profit-amount {
+    font-size: 28px;         /* Matches dashboard mobile sizing */
+  }
+  
+  .chart-container {
+    height: 300px;
+    padding: 16px;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 16px;
+  }
+  
+  .dashboard-title {
+    font-size: 20px;
+  }
+  
+  .revenue-amount,
+  .expense-amount,
+  .profit-amount {
+    font-size: 24px;
+  }
+  
+  .chart-container {
+    height: 250px;
+  }
+}
