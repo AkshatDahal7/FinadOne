@@ -1,9 +1,24 @@
+
 //Create new sales or invoice 
-const salesForm= ()=>{
+
+import { useState } from "react";
+import "../common/page.css"
+const CustomerForm= ()=>{
+    const[formData, setFormData]= useState({
+        customerType: "",
+        primaryContactSalutation : "",
+        primaryContactFName: "",
+        primaryContactLName: "",
+        customerEmail: "",
+        customerPhone: "",
+        
+    })
+    const [activeTab, setActiveTab] = useState('other-details')
+    
     return(
         <div>
 
         </div>
     )
 }
-export default salesForm;
+export default CustomerForm;

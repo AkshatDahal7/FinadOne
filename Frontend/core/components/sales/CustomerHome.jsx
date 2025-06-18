@@ -1,6 +1,6 @@
 const SalesHome = () =>{
     return (
-        <div>
+        <div className="left-margin:20px top-margin-60px">
             <h1>This is sales home</h1>
         </div>
 
