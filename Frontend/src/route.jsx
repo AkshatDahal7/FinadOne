@@ -5,7 +5,7 @@ import Banking from "../core/pages/Banking";
 import Sales from "../core/pages/Sales";
 import Purchases from "../core/pages/Purchases";
 import SideNav from "../core/components/common/SideNav";
-
+import Sales
 
 const ARouter=()=>{
     return(

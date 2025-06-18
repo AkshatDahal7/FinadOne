@@ -4,9 +4,13 @@ import ProfitLoss from "../components/dashboard/ProfitAndLoss";
 import './Dashboard.css'
 const Dashboard = () =>{
     return (
-        <div className="dashboardMain">
-        <DashboardOverview/>
-        <ProfitLoss/>
+        <div className="dashboardOverall">
+        <div className="dashboardContainer">
+            <DashboardOverview/>
+            </div>
+                <div className="dashboardRemaining">
+            <ProfitLoss/>
+        </div>
         </div>
     )
 }

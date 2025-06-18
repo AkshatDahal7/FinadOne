@@ -10,7 +10,7 @@ const SideNav = () => {
   const handleSectionClick = (sectionName) => {
     setActiveSection((prev) => (prev === sectionName ? "" : sectionName));
     setActivePage(""); // Clear subpage selection when switching section
-    navigate(sectionName === "Dashboard" ? "/" : `/${sectionName.toLowerCase()}`);
+    // navigate(sectionName === "Dashboard" ? "/" : `/${sectionName.toLowerCase()}`);
   };
 
   const handlePageClick = (pageName, route) => {

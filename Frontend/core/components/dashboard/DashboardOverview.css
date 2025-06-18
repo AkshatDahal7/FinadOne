@@ -4,9 +4,9 @@
   margin-left: 15vw;       /* space for sidebar */
   margin-top: 60px;        /* space for navbar */
   padding: 20px;
-  width: calc(100vw - 15vw);
-  min-height: calc(100vh - 60px);
-  background: #f8fafc;     /* Light slate background instead of white */
+  /* width: calc(100vw - 15vw);
+  min-height: calc(100vh - 60px); */
+  /* background: #f8fafc;     */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   box-sizing: border-box;
   overflow-y: auto;
@@ -20,11 +20,11 @@
   max-width: 1200px;
   background-color: #ffffff;
   border-radius: 16px;      /* More modern rounded corners */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06); */
   border: 1px solid #e5e7eb; /* Subtle border */
   padding: 32px;            /* More padding */
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-columns: repeat(3, 1fr); */
   grid-template-rows: auto auto;
   gap: 24px;                /* Increased gap */
   grid-template-areas:

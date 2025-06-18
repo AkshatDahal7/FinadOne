@@ -1,23 +1,27 @@
-.dashboardMain {
+.dashboardRemaining {
   display: grid;
   grid-template-rows: auto auto;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(2,1fr);
   /* gap: 20px; */
   margin-left: 15vw;        /* Account for sidebar */
   margin-top: 60px;         /* Account for navbar */
-  width: calc(100vw - 15vw);
-  min-height: calc(100vh - 60px);
-  padding: 20px;
+  /* width: calc(100vw - 15vw);
+  min-height: calc(100vh - 60px); */
+  padding: 2px;
   background: #f8fafc;
   box-sizing: border-box;
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
-
+.dashboardContainer{
+  grid-column: 1 / -1;
+   /* margin-left: 15vw;       
+  margin-top: 60px; */
+}
 /* Remove individual margins from child components */
-.dashboardMain .dashboard-overview,
+/* .dashboardMain .dashboard-overview,
 .dashboardMain .profit-loss-overview {
   margin: 0;
   width: 100%;
   padding: 0;
   background: transparent;
-}
+} */

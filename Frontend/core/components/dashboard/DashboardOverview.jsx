@@ -1,4 +1,4 @@
-import React from "react";
+
 import "./DashboardOverview.css"
 const DashboardOverview = () =>{
     const totalRevenue = 1000;
