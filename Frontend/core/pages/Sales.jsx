@@ -1,8 +1,10 @@
-import CustomerHome from '../components/sales/CustomerHome';
+import CustomerForm from '../components/sales/CustomerForm';
+import CustomerList from '../components/sales/CustomerList';
+
 const Sales = () =>{
     return (
         <div className="SalesOverview">
-            <CustomerHome/>
+            <CustomerList/>
         </div>
     )
 }
