@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import InvoiceForm from "./InvoiceGenerator.jsx";
-import "./invoice.css";
+import BillForm from "./BillForm";
+import "./bill.css";
 
-const InvoiceList = () => {
+const BillList = () => {
   const [showForm, setShowForm] = useState(false);
   const [editingInvoice, setEditingInvoice] = useState(null);
-  const [invoices, setInvoices] = useState([]);
+  const [bills, setInvoices] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [loading, setLoading] = useState(false);
@@ -81,45 +81,45 @@ const InvoiceList = () => {
     }, 1000);
   }, []);
 
-  // Handle adding new invoice
+  // Handle adding new bill
   const handleAddInvoice = () => {
     setEditingInvoice(null);
     setShowForm(true);
   };
 
-  // Handle editing invoice
-  const handleEditInvoice = (invoice) => {
-    setEditingInvoice(invoice);
+  // Handle editing bill
+  const handleEditInvoice = (bill) => {
+    setEditingInvoice(bill);
     setShowForm(true);
   };
 
-  // Handle deleting invoice
+  // Handle deleting bill
   const handleDeleteInvoice = (invoiceId) => {
-    if (window.confirm("Are you sure you want to delete this invoice?")) {
-      setInvoices(invoices.filter(invoice => invoice.id !== invoiceId));
+    if (window.confirm("Are you sure you want to delete this bill?")) {
+      setInvoices(bills.filter(bill => bill.id !== invoiceId));
     }
   };
 
   // Handle form submission
   const handleFormSubmit = (invoiceData) => {
     if (editingInvoice) {
-      // Update existing invoice
-      setInvoices(invoices.map(invoice => 
-        invoice.id === editingInvoice.id 
+      // Update existing bill
+      setInvoices(bills.map(bill => 
+        bill.id === editingInvoice.id 
           ? { ...invoiceData, id: editingInvoice.id }
-          : invoice
+          : bill
       ));
     } else {
-      // Add new invoice
+      // Add new bill
       const newInvoice = {
         ...invoiceData,
         id: Date.now(), // Simple ID generation
-        invoiceNumber: `INV-2024-${String(invoices.length + 1).padStart(3, '0')}`,
+        invoiceNumber: `INV-2024-${String(bills.length + 1).padStart(3, '0')}`,
         status: "draft",
         issueDate: new Date().toISOString().split('T')[0],
         paymentDate: null
       };
-      setInvoices([...invoices, newInvoice]);
+      setInvoices([...bills, newInvoice]);
     }
     setShowForm(false);
     setEditingInvoice(null);
@@ -133,34 +133,34 @@ const InvoiceList = () => {
 
   // Handle status change
   const handleStatusChange = (invoiceId, newStatus) => {
-    setInvoices(invoices.map(invoice => 
-      invoice.id === invoiceId 
+    setInvoices(bills.map(bill => 
+      bill.id === invoiceId 
         ? { 
-            ...invoice, 
+            ...bill, 
             status: newStatus,
             paymentDate: newStatus === 'paid' ? new Date().toISOString().split('T')[0] : null
           }
-        : invoice
+        : bill
     ));
   };
 
-  // Filter invoices based on search and status
-  const filteredInvoices = invoices.filter(invoice => {
+  // Filter bills based on search and status
+  const filteredInvoices = bills.filter(bill => {
     const matchesSearch = 
-      invoice.invoiceNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      invoice.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      invoice.companyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      invoice.description.toLowerCase().includes(searchTerm.toLowerCase());
+      bill.invoiceNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      bill.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      bill.companyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      bill.description.toLowerCase().includes(searchTerm.toLowerCase());
     
-    const matchesStatus = filterStatus === "all" || invoice.status === filterStatus;
+    const matchesStatus = filterStatus === "all" || bill.status === filterStatus;
     
     return matchesSearch && matchesStatus;
   });
 
   // Calculate summary stats
-  const paidAmount = invoices.filter(i => i.status === 'paid').reduce((sum, invoice) => sum + invoice.amount, 0);
-  const pendingAmount = invoices.filter(i => i.status === 'pending' || i.status === 'sent').reduce((sum, invoice) => sum + invoice.amount, 0);
-  const overdueAmount = invoices.filter(i => i.status === 'overdue').reduce((sum, invoice) => sum + invoice.amount, 0);
+  const paidAmount = bills.filter(i => i.status === 'paid').reduce((sum, bill) => sum + bill.amount, 0);
+  const pendingAmount = bills.filter(i => i.status === 'pending' || i.status === 'sent').reduce((sum, bill) => sum + bill.amount, 0);
+  const overdueAmount = bills.filter(i => i.status === 'overdue').reduce((sum, bill) => sum + bill.amount, 0);
 
   // Get status color class
   const getStatusClass = (status) => {
@@ -181,15 +181,15 @@ const InvoiceList = () => {
   };
 
   // Check if overdue
-  const isOverdue = (invoice) => {
-    if (invoice.status === 'paid' || invoice.status === 'draft') return false;
-    return new Date(invoice.dueDate) < new Date();
+  const isOverdue = (bill) => {
+    if (bill.status === 'paid' || bill.status === 'draft') return false;
+    return new Date(bill.dueDate) < new Date();
   };
 
   if (showForm) {
     return (
       <InvoiceForm 
-        invoice={editingInvoice}
+        bill={editingInvoice}
         onSubmit={handleFormSubmit}
         onBack={handleBackToList}
         isEditing={!!editingInvoice}
@@ -198,32 +198,32 @@ const InvoiceList = () => {
   }
 
   return (
-    <div className="invoice-list-container">
+    <div className="bill-list-container">
       {/* Header Section */}
-      <div className="invoice-list-header">
+      <div className="bill-list-header">
         <div className="header-title">
-          <h1>Invoice Management</h1>
-          <p>Create, manage and track your invoices</p>
+          <h1>Bill Management</h1>
+          <p>Create, manage and track your bills</p>
         </div>
-        <button className="btn btn-primary add-invoice-btn" onClick={handleAddInvoice}>
+        <button className="btn btn-primary add-bill-btn" onClick={handleAddInvoice}>
           <span className="btn-icon">+</span>
-          Create Invoice
+          Create bill
         </button>
       </div>
 
       {/* Stats Cards */}
       <div className="stats-grid">
         <div className="stat-card">
-          <div className="stat-value">{invoices.length}</div>
-          <div className="stat-label">Total Invoices</div>
+          <div className="stat-value">{bills.length}</div>
+          <div className="stat-label">Total Bills</div>
         </div>
         <div className="stat-card stat-paid">
           <div className="stat-value">${paidAmount.toLocaleString()}</div>
-          <div className="stat-label">Paid Amount</div>
+          <div className="stat-label">Payable Amount</div>
         </div>
         <div className="stat-card stat-pending">
           <div className="stat-value">${pendingAmount.toLocaleString()}</div>
-          <div className="stat-label">Pending Amount</div>
+          <div className="stat-label">Amount Paid</div>
         </div>
         <div className="stat-card stat-overdue">
           <div className="stat-value">${overdueAmount.toLocaleString()}</div>
@@ -232,11 +232,11 @@ const InvoiceList = () => {
       </div>
 
       {/* Filters and Search */}
-      <div className="invoice-controls">
+      <div className="bill-controls">
         <div className="search-box">
           <input
             type="text"
-            placeholder="Search invoices..."
+            placeholder="Search bills..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-input"
@@ -258,36 +258,36 @@ const InvoiceList = () => {
         </div>
       </div>
 
-      {/* Invoice List */}
-      <div className="invoice-list-section">
+      {/* bill List */}
+      <div className="bill-list-section">
         {loading ? (
           <div className="loading-state">
             <div className="spinner"></div>
-            <p>Loading invoices...</p>
+            <p>Loading bills...</p>
           </div>
         ) : filteredInvoices.length === 0 ? (
           <div className="empty-state">
             <div className="empty-icon">📄</div>
-            <h3>No invoices found</h3>
+            <h3>No bills found</h3>
             <p>
               {searchTerm || filterStatus !== "all" 
                 ? "Try adjusting your search or filters"
-                : "Get started by creating your first invoice"
+                : "Get started by creating your first bill"
               }
             </p>
             {!searchTerm && filterStatus === "all" && (
               <button className="btn btn-primary" onClick={handleAddInvoice}>
-                Create Your First Invoice
+                Create Your First bill
               </button>
             )}
           </div>
         ) : (
           <>
             {/* Table Header */}
-            <div className="invoice-table">
+            <div className="bill-table">
               <div className="table-header">
-                <div className="header-cell">Invoice #</div>
-                <div className="header-cell">Customer</div>
+                <div className="header-cell">Bill #</div>
+                <div className="header-cell">Vendor</div>
                 <div className="header-cell">Amount</div>
                 <div className="header-cell">Status</div>
                 <div className="header-cell">Issue Date</div>
@@ -297,30 +297,30 @@ const InvoiceList = () => {
 
               {/* Table Body */}
               <div className="table-body">
-                {filteredInvoices.map((invoice) => (
-                  <div key={invoice.id} className={`table-row ${isOverdue(invoice) ? 'row-overdue' : ''}`}>
+                {filteredInvoices.map((bill) => (
+                  <div key={bill.id} className={`table-row ${isOverdue(bill) ? 'row-overdue' : ''}`}>
                     <div className="table-cell">
-                      <div className="invoice-info">
-                        <div className="invoice-number">{invoice.invoiceNumber}</div>
-                        <div className="invoice-description">{invoice.description}</div>
+                      <div className="bill-info">
+                        <div className="bill-number">{bill.invoiceNumber}</div>
+                        <div className="bill-description">{bill.description}</div>
                       </div>
                     </div>
                     <div className="table-cell">
                       <div className="customer-info">
-                        <div className="customer-name">{invoice.customerName}</div>
-                        <div className="company-name">{invoice.companyName}</div>
+                        <div className="customer-name">{bill.customerName}</div>
+                        <div className="company-name">{bill.companyName}</div>
                       </div>
                     </div>
                     <div className="table-cell">
-                      <div className="invoice-amount">
-                        ${invoice.amount.toLocaleString()}
+                      <div className="bill-amount">
+                        ${bill.amount.toLocaleString()}
                       </div>
                     </div>
                     <div className="table-cell">
                       <select
-                        value={invoice.status}
-                        onChange={(e) => handleStatusChange(invoice.id, e.target.value)}
-                        className={`status-select ${getStatusClass(invoice.status)}`}
+                        value={bill.status}
+                        onChange={(e) => handleStatusChange(bill.id, e.target.value)}
+                        className={`status-select ${getStatusClass(bill.status)}`}
                       >
                         <option value="draft">Draft</option>
                         <option value="sent">Sent</option>
@@ -331,35 +331,35 @@ const InvoiceList = () => {
                     </div>
                     <div className="table-cell">
                       <div className="date-info">
-                        {formatDate(invoice.issueDate)}
+                        {formatDate(bill.issueDate)}
                       </div>
                     </div>
                     <div className="table-cell">
-                      <div className={`date-info ${isOverdue(invoice) ? 'date-overdue' : ''}`}>
-                        {formatDate(invoice.dueDate)}
-                        {isOverdue(invoice) && <span className="overdue-indicator">!</span>}
+                      <div className={`date-info ${isOverdue(bill) ? 'date-overdue' : ''}`}>
+                        {formatDate(bill.dueDate)}
+                        {isOverdue(bill) && <span className="overdue-indicator">!</span>}
                       </div>
                     </div>
                     <div className="table-cell">
                       <div className="action-buttons">
                         <button
                           className="btn btn-sm btn-secondary"
-                          onClick={() => handleEditInvoice(invoice)}
-                          title="Edit Invoice"
+                          onClick={() => handleEditInvoice(bill)}
+                          title="Edit bill"
                         >
                           Edit
                         </button>
                         <button
                           className="btn btn-sm btn-info"
                           onClick={() => window.print()}
-                          title="Print Invoice"
+                          title="Print bill"
                         >
                           Print
                         </button>
                         <button
                           className="btn btn-sm btn-danger"
-                          onClick={() => handleDeleteInvoice(invoice.id)}
-                          title="Delete Invoice"
+                          onClick={() => handleDeleteInvoice(bill.id)}
+                          title="Delete bill"
                         >
                           Delete
                         </button>
@@ -372,7 +372,7 @@ const InvoiceList = () => {
 
             {/* Results Summary */}
             <div className="results-summary">
-              Showing {filteredInvoices.length} of {invoices.length} invoices
+              Showing {filteredInvoices.length} of {bills.length} bills
               <span className="total-amount">
                 Total: ${filteredInvoices.reduce((sum, inv) => sum + inv.amount, 0).toLocaleString()}
               </span>
@@ -384,4 +384,4 @@ const InvoiceList = () => {
   );
 };
 
-export default InvoiceList;
+export default BillList;

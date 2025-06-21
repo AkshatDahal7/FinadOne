@@ -1,9 +1,9 @@
-.page-container {
+/* .page-container {
   padding: 2rem;
-  margin-left: 15vw; /* to align with sidebar */
-  background-color: #1f2937; /* Gray 800 */
-  min-height: calc(100vh - 60px); /* adjust for navbar */
-  color: #f3f4f6; /* Gray 100 */
+  margin-left: 15vw; 
+  background-color: #1f2937; 
+  min-height: calc(100vh - 60px);
+  color: #f3f4f6; 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .page-section {
-  background-color: #111827; /* same as sidebar */
+  background-color: #111827; 
   padding: 1.5rem;
   border-radius: 0.75rem;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
@@ -87,4 +87,4 @@ th {
 
 tr:hover {
   background-color: #374151;
-}
+} */

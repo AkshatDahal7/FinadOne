@@ -5,7 +5,7 @@
   padding: 25px;
   width: 100%;
   max-width: 1200px;
-  background-color: #ffffff;      /* More modern rounded corners */
+  background-color: #1e293b;      /* More modern rounded corners */
   display: grid;
   grid-column: 1 / -1;
   grid-template-rows: auto auto;               /* Increased gap */
@@ -13,33 +13,34 @@
   transition: all 0.3s ease;
   /* overflow-y: hidden; */
 }
+.content-inside{
+  display: flex;
+  flex-direction: row;
+}
 
-
-.card {
+.profitloss-card {
    width: 100%;
   max-width: 1200px;
-  background-color: #ffffff;
-  border-radius: 16px;      /* More modern rounded corners */
+  background-color: #1e293b;
   /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06); */
   padding: 32px;
   /* max-width: 1200px; */
-
-  border-radius: 16px;      /* More modern rounded corners - matches dashboard */
   /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06); */
   padding: 32px;            /* More padding - matches dashboard */
   box-sizing: border-box;
   transition: all 0.3s ease;
 }
 
-.card:hover {
+
+.profit-loss-overview .card:hover {
   transform: translateY(-2px);  /* Subtle lift - matches dashboard */
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-.dashboard-title {
+.profitloss-title {
   font-size: 32px;          /* Larger title - matches dashboard */
   font-weight: 700;         /* Bolder - matches dashboard */
-  color: #111827;           /* Dark gray - matches dashboard */
+  color: hwb(0 100% 0%);           /* Dark gray - matches dashboard */
   margin-bottom: 32px;      /* Matches dashboard spacing */
   text-align: center;
   letter-spacing: -0.025em; /* Tighter letter spacing - matches dashboard */
@@ -50,14 +51,16 @@
 /* SUMMARY CARDS - Updated to match dashboard metric cards */
 .summary-cards {
   display: flex;
-  flex-direction: column;  
-  align-items: center;
-  gap: 10px;               
+  flex-direction: column;
+  align-items: start;
+  justify-items:end;
+  gap: 10px;
+
     
 }
 
-.revenue-card {
-  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%); /* Matches dashboard */
+.pl-revenue-card {
+  background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%); 
   border: 1px solid #22c55e;  /* Green 500 - matches dashboard */
   border-radius: 12px;
   padding: 24px;
@@ -72,7 +75,7 @@
   overflow: hidden;
 }
 
-.revenue-card::before {
+.pl-revenue-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -82,7 +85,7 @@
   background: linear-gradient(90deg, #22c55e, #16a34a);
 }
 
-.expense-card {
+.pl-expense-card {
   background: linear-gradient(135deg, #fef2f2 0%, #fef7f7 100%);
   border: 1px solid #ef4444;  /* Red 500 - matches dashboard */
   border-radius: 12px;
@@ -98,7 +101,7 @@
   overflow: hidden;
 }
 
-.expense-card::before {
+.pl-expense-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -108,7 +111,7 @@
   background: linear-gradient(90deg, #ef4444, #dc2626);
 }
 
-.profit-card {
+.pl-profit-card {
   background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
   border: 1px solid #3b82f6;  /* Blue 500 - matches dashboard */
   border-radius: 12px;
@@ -124,7 +127,7 @@
   overflow: hidden;
 }
 
-.profit-card::before {
+.pl-profit-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -135,19 +138,19 @@
 }
 
 /* MODERN HOVER EFFECTS - Matches dashboard */
-.revenue-card:hover {
+.pl-revenue-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 6px -1px rgba(34, 197, 94, 0.2), 0 2px 4px -1px rgba(34, 197, 94, 0.1);
   border-color: #16a34a;
 }
 
-.expense-card:hover {
+.pl-expense-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.2), 0 2px 4px -1px rgba(239, 68, 68, 0.1);
   border-color: #dc2626;
 }
 
-.profit-card:hover {
+.pl-profit-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2), 0 2px 4px -1px rgba(59, 130, 246, 0.1);
   border-color: #2563eb;
@@ -165,7 +168,7 @@
 }
 
 /* AMOUNT STYLES - Updated to match dashboard */
-.revenue-amount {
+.pl-revenue-amount {
   font-size: 36px;          /* Larger numbers - matches dashboard */
   font-weight: 800;         /* Extra bold - matches dashboard */
   color: #16a34a;           /* Green 600 - matches dashboard */
@@ -173,7 +176,7 @@
   letter-spacing: -0.02em;
 }
 
-.expense-amount {
+.pl-expense-amount {
   font-size: 36px;
   font-weight: 800;
   color: #dc2626;           /* Red 600 - matches dashboard */
@@ -181,25 +184,27 @@
   letter-spacing: -0.02em;
 }
 
-.profit-amount {
+.pl-profit-amount {
   font-size: 36px;
   font-weight: 800;
   margin-top: 12px;
   letter-spacing: -0.02em;
 }
 
-.profit-amount.positive {
+.pl-profit-amount.positive {
   color: #16a34a;           /* Green 600 - matches dashboard */
 }
 
-.profit-amount.negative {
+.pl-profit-amount.negative {
   color: #dc2626;           /* Red 600 - matches dashboard */
 }
 
 /* CHART CONTAINER - Updated to match modern style */
 .chart-container {
-  height: auto;
-  width: 100%;        
+  flex: 1;
+  height: auto; 
+  margin-left: 60px;
+  width: 70%;
   padding: 24px;            /* Matches dashboard padding */
   background: #ffffff;      /* White background like cards */
   border-radius: 12px;      /* Matches modern rounded corners */
@@ -213,43 +218,7 @@
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
-/* DARK MODE VARIANT - Matches dashboard dark mode */
-.profit-loss-overview.dark-mode {
-  background: #0f172a;      /* Matches navbar dark theme */
-}
 
-.dark-mode .card {
-  background-color: #1e293b; /* Slate 800 */
-  border: 1px solid #334155;
-  color: #f1f5f9;
-}
-
-.dark-mode .dashboard-title {
-  color: #f1f5f9;
-}
-
-.dark-mode .revenue-card {
-  background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
-  border-color: #10b981;
-  color: #d1fae5;
-}
-
-.dark-mode .expense-card {
-  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
-  border-color: #f87171;
-  color: #fecaca;
-}
-
-.dark-mode .profit-card {
-  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
-  border-color: #60a5fa;
-  color: #dbeafe;
-}
-
-.dark-mode .chart-container {
-  background-color: #1e293b;
-  border: 1px solid #334155;
-}
 
 /* RESPONSIVE DESIGN - Updated to match dashboard */
 @media (max-width: 767px) {

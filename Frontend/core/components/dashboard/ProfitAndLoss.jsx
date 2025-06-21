@@ -14,7 +14,6 @@ import {
 } from "chart.js";
 import "./ProfitLoss.css";
 
-// Register Chart.js components (Chart.js v4+)
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -32,7 +31,6 @@ const ProfitLoss = () => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
-  // Sample data
   const monthlyData = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
     revenue: [12000, 15000, 11000, 18000, 16000, 20000],
@@ -51,7 +49,6 @@ const ProfitLoss = () => {
     const ctx = chartRef.current?.getContext("2d");
     if (!ctx) return;
 
-    // Clean up existing chart
     if (chartInstance.current) {
       chartInstance.current.destroy();
     }
@@ -164,30 +161,31 @@ const ProfitLoss = () => {
       },
     });
 
-    // Cleanup chart on unmount
     return () => {
       chartInstance.current?.destroy();
     };
-  }, []); // Data doesn't change, so empty dependency array is OK
+  }, []);
 
   return (
     <div className="profit-loss-overview">
-      <div className="card">
-        <div className="dashboard-title">Profit & Loss Statement</div>
-
+      <div className="profitloss-card">
+        <div className="profitloss-title">Profit & Loss Statement</div>
+      <div className="content-inside">
         <div className="summary-cards">
-          <div className="revenue-card">
+          <div className="pl-revenue-card">
             <div className="card-label">Total Revenue</div>
-            <div className="revenue-amount">${totalRevenue.toLocaleString()}</div>
+            <div className="pl-revenue-amount">${totalRevenue.toLocaleString()}</div>
           </div>
-          <div className="expense-card">
+          <div className="pl-expense-card">
             <div className="card-label">Total Expenses</div>
-            <div className="expense-amount">${totalExpenses.toLocaleString()}</div>
+            <div className="pl-expense-amount">${totalExpenses.toLocaleString()}</div>
           </div>
-          <div className="profit-card">
+          <div className="pl-profit-card">
             <div className="card-label">Net Profit</div>
             <div
-              className={`profit-amount ${totalProfit >= 0 ? "positive" : "negative"}`}
+              className={`pl-profit-amount ${
+                totalProfit >= 0 ? "positive" : "negative"
+              }`}
             >
               ${totalProfit.toLocaleString()}
             </div>
@@ -196,6 +194,7 @@ const ProfitLoss = () => {
 
         <div className="chart-container">
           <canvas ref={chartRef}></canvas>
+        </div>
         </div>
       </div>
     </div>

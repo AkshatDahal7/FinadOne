@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './CustomerForm.css'; // optional, like your customer form
+import './billForm.css'; // optional, like your customer form
 
-const InvoiceForm = () => {
+const BillForm = () => {
   const [formData, setFormData] = useState({
     invoiceNumber: '',
     customerName: '',
@@ -22,16 +22,16 @@ const InvoiceForm = () => {
   };
 
   const handleSubmit = () => {
-    console.log('Invoice submitted:', formData);
+    console.log('bill submitted:', formData);
     // You can now send this data to your backend or state manager
   };
 
   return (
-    <div className="invoice-form">
-      <h2>Invoice Details</h2>
+    <div className="bill-form">
+      <h2>Bill Details</h2>
 
       <div className="form-group">
-        <label>Invoice Number</label>
+        <label>Bill Number</label>
         <input
           type="text"
           value={formData.invoiceNumber}
@@ -40,7 +40,7 @@ const InvoiceForm = () => {
       </div>
 
       <div className="form-group">
-        <label>Customer Name</label>
+        <label>Vendor Name</label>
         <input
           type="text"
           value={formData.customerName}
@@ -116,10 +116,10 @@ const InvoiceForm = () => {
 
       <div className="form-actions">
         <button className="btn btn-secondary">Cancel</button>
-        <button className="btn btn-primary" onClick={handleSubmit}>Save Invoice</button>
+        <button className="btn btn-primary" onClick={handleSubmit}>Save bill</button>
       </div>
     </div>
   );
 };
 
-export default InvoiceForm;
+export default BillForm;

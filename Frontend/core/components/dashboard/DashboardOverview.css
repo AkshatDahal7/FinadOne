@@ -3,48 +3,38 @@
 .dashboard-overview {
   margin-left: 15vw;       /* space for sidebar */
   margin-top: 60px;        /* space for navbar */
-  padding: 20px;
-  /* width: calc(100vw - 15vw);
-  min-height: calc(100vh - 60px); */
-  /* background: #f8fafc;     */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   box-sizing: border-box;
   overflow-y: auto;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  color: #ffffff;
 }
 
 .card {
   width: 100%;
   max-width: 1200px;
-  background-color: #ffffff;
-  border-radius: 16px;      /* More modern rounded corners */
-  /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06); */
-  border: 1px solid #e5e7eb; /* Subtle border */
+  background-color: #1e293b;
+  color: #ffffff ;
+
   padding: 32px;            /* More padding */
   display: grid;
-  /* grid-template-columns: repeat(3, 1fr); */
   grid-template-rows: auto auto;
   gap: 24px;                /* Increased gap */
   grid-template-areas:
     "title title title"
     "revenue expense profit";
-  box-sizing: border-box;
-  transition: all 0.3s ease;
+  /* box-sizing: border-box;
+  transition: all 0.3s ease; */
 }
 
-.card:hover {
-  transform: translateY(-2px);  /* Subtle lift */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
 
 .dashboard-title {
   grid-area: title;
   font-size: 32px;          /* Larger title */
   font-weight: 700;         /* Bolder */
-  color: #111827;           /* Dark gray to match sidebar theme */
-  margin-bottom: 32px;
+  color: #ffffff;       
   text-align: center;
   letter-spacing: -0.025em; /* Tighter letter spacing */
 }
@@ -178,48 +168,16 @@
 }
 
 /* ADD METRIC LABELS - Optional enhancement */
-.metric-label {
+/* .metric-label {
   display: block;
   font-size: 14px;
   font-weight: 500;
-  color: #6b7280;           /* Gray 500 */
+  color: #6b7280;          
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 8px;
-}
+} */
 
-/* DARK MODE VARIANT - if you want to match dark sidebar */
-.dashboard-overview.dark-mode {
-  background: #0f172a;      /* Matches navbar dark theme */
-}
-
-.dark-mode .card {
-  background-color: #1e293b; /* Slate 800 */
-  border: 1px solid #334155;
-  color: #f1f5f9;
-}
-
-.dark-mode .dashboard-title {
-  color: #f1f5f9;
-}
-
-.dark-mode .Trevenue-card {
-  background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
-  border-color: #10b981;
-  color: #d1fae5;
-}
-
-.dark-mode .Texpense-card {
-  background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%);
-  border-color: #f87171;
-  color: #fecaca;
-}
-
-.dark-mode .Tprofit-card {
-  background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%);
-  border-color: #60a5fa;
-  color: #dbeafe;
-}
 
 /* Responsive improvements */
 @media (max-width: 767px) {
