@@ -134,7 +134,7 @@ const VendorForm = () => {
         <textarea 
           className="form-textarea" 
           rows="6" 
-          placeholder="Add any internal notes or remarks about this customer..."
+          placeholder="Add any internal notes or remarks about this Vendor..."
         ></textarea>
       </div>
     </div>
@@ -160,7 +160,7 @@ const VendorForm = () => {
   };
 
   return (
-    <div className="customer-form-container">
+    <div className="Vendor-form-container">
       <div className="form-header">
         <h1 className="form-title">Vendor Information</h1>
       </div>
@@ -169,7 +169,7 @@ const VendorForm = () => {
       <div className="main-form-section">
         <h2 className="section-title">Primary Details</h2>
         
-        {/* Customer Type */}
+        {/* Vendor Type */}
         <div className="form-group">
           <label className="form-label">
             Vendor Type <span className="info-icon">ⓘ</span>
@@ -254,7 +254,7 @@ const VendorForm = () => {
           {!formData.displayName && (
             <div className="error-message">
               <span className="error-icon">⚠️</span>
-              Enter the Display Name of your customer
+              Enter the Display Name of your Vendor
             </div>
           )}
         </div>
@@ -319,7 +319,7 @@ const VendorForm = () => {
       {/* ACTION BUTTONS */}
       <div className="action-buttons">
         <button className="btn btn-secondary">Cancel</button>
-        <button className="btn btn-primary">Save Customer</button>
+        <button className="btn btn-primary">Save Vendor</button>
       </div>
     </div>
   );
