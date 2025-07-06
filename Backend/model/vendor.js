@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const vendorSchema = new mongoose.Schema({
-  customerType: {
+  vendorType: {
     type: String,
     enum: ['business', 'individual'],
     default: 'business'

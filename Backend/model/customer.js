@@ -22,6 +22,7 @@ const customerSchema = new mongoose.Schema({
   salutation: {
     type: String,
     enum: ['Mr.', 'Ms.', 'Mrs.', 'Dr.'],
+    required : false
   },
   address: {
     street: String,

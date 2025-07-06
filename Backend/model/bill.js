@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
 const billSchema = new mongoose.Schema({
-  invoiceNumber: {
+  billNumber: {
     type: String,
     required: true,
     unique: true
   },
-  customerName: {
+  vendorName: {
     type: String,
     required: true
   },
