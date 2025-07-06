@@ -9,8 +9,114 @@ const CustomerForm = () => {
     displayName: '',
     email: '',
     workPhone: '',
-    mobile: ''
+    mobile: '',
+    companyName: '',
+    salutation: '',
+    address: {
+      street: '',
+      city: '',
+      state: '',
+      zip: ''
+    },
+    taxRate: '',
+    currency: '',
+    paymentTerms: '',
+    reportingTags: [],
+    remarks: '',
+    contactPersons: [],
+    customFields: []
   });
+
+  const submitHandler = async(e) =>{
+    e.preventDefault();
+    if (!formData.salutation) {
+    alert("Please select a salutation");
+    return;
+  }
+    console.log("Submitting formData:", formData);
+    try{
+      const customer = await fetch("http://localhost:4000/sales/customer",{
+        method : "POST",
+        headers : {"Content-Type": "application/json"},
+        body : JSON.stringify(formData),
+      });
+
+      if(!customer.ok) throw new Error("Failed to save Customer!!")
+      const data = await customer.json();
+      alert("Customer saved" + data._id);
+
+      setFormData({
+        customerType: 'business',
+        firstName: '',
+        lastName: '',
+        displayName: '',
+        email: '',
+        workPhone: '',
+        mobile: '',
+        companyName: '',
+        salutation: '',
+        address: {
+          street: '',
+          city: '',
+          state: '',
+          zip: ''
+        },
+        taxRate: '',
+        currency: '',
+        paymentTerms: '',
+        reportingTags: [],
+        remarks: '',
+        contactPersons: [],
+        customFields: []
+      });
+
+    }
+    catch(e){
+      console.log(e);
+    }
+  }
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleNestedChange = (section, field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [section]: {
+        ...prev[section],
+        [field]: value
+      }
+    }));
+  };
+
+  const addContactPerson = () => {
+    setFormData(prev => ({
+      ...prev,
+      contactPersons: [...prev.contactPersons, { name: '', email: '', phone: '' }]
+    }));
+  };
+
+  const updateContactPerson = (index, field, value) => {
+    const updated = [...formData.contactPersons];
+    updated[index][field] = value;
+    setFormData(prev => ({ ...prev, contactPersons: updated }));
+  };
+
+  const addCustomField = () => {
+    setFormData(prev => ({
+      ...prev,
+      customFields: [...prev.customFields, { label: '', value: '' }]
+    }));
+  };
+
+  const updateCustomField = (index, field, value) => {
+    const updated = [...formData.customFields];
+    updated[index][field] = value;
+    setFormData(prev => ({ ...prev, customFields: updated }));
+  };
 
   const tabs = [
     { id: 'other-details', label: 'Other Details' },
@@ -21,20 +127,13 @@ const CustomerForm = () => {
     { id: 'remarks', label: 'Remarks' }
   ];
 
-  const handleInputChange = (field, value) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-  };
-
   const renderOtherDetails = () => (
     <div className="tab-content">
       <h3>Other Details</h3>
       <div className="form-group">
         <label className="form-label">Tax Rate:</label>
-        <select className="form-select">
-          <option>Select a Tax</option>
+        <select className="form-select" value={formData.taxRate} onChange={(e) => handleInputChange('taxRate', e.target.value)}>
+          <option value="">Select a Tax</option>
           <option>Standard Rate (10%)</option>
           <option>Reduced Rate (5%)</option>
           <option>Zero Rate (0%)</option>
@@ -42,8 +141,8 @@ const CustomerForm = () => {
       </div>
       <div className="form-group">
         <label className="form-label">Currency:</label>
-        <select className="form-select">
-          <option>Select Currency</option>
+        <select className="form-select" value={formData.currency} onChange={(e) => handleInputChange('currency', e.target.value)}>
+          <option value="">Select Currency</option>
           <option>USD - US Dollar</option>
           <option>EUR - Euro</option>
           <option>GBP - British Pound</option>
@@ -51,8 +150,8 @@ const CustomerForm = () => {
       </div>
       <div className="form-group">
         <label className="form-label">Payment Terms:</label>
-        <select className="form-select">
-          <option>Select Payment Terms</option>
+        <select className="form-select" value={formData.paymentTerms} onChange={(e) => handleInputChange('paymentTerms', e.target.value)}>
+          <option value="">Select Payment Terms</option>
           <option>Net 30</option>
           <option>Net 15</option>
           <option>Due on Receipt</option>
@@ -67,21 +166,21 @@ const CustomerForm = () => {
       <div className="form-group-grid">
         <div className="form-group">
           <label className="form-label">Street Address:</label>
-          <input type="text" className="form-input" placeholder="Enter street address" />
+          <input type="text" className="form-input" placeholder="Enter street address" value={formData.address.street} onChange={(e) => handleNestedChange('address', 'street', e.target.value)} />
         </div>
         <div className="form-group">
           <label className="form-label">City:</label>
-          <input type="text" className="form-input" placeholder="Enter city" />
+          <input type="text" className="form-input" placeholder="Enter city" value={formData.address.city} onChange={(e) => handleNestedChange('address', 'city', e.target.value)} />
         </div>
       </div>
       <div className="form-group-grid">
         <div className="form-group">
           <label className="form-label">State/Province:</label>
-          <input type="text" className="form-input" placeholder="Enter state/province" />
+          <input type="text" className="form-input" placeholder="Enter state/province" value={formData.address.state} onChange={(e) => handleNestedChange('address', 'state', e.target.value)} />
         </div>
         <div className="form-group">
           <label className="form-label">ZIP/Postal Code:</label>
-          <input type="text" className="form-input" placeholder="Enter ZIP/postal code" />
+          <input type="text" className="form-input" placeholder="Enter ZIP/postal code" value={formData.address.zip} onChange={(e) => handleNestedChange('address', 'zip', e.target.value)} />
         </div>
       </div>
     </div>
@@ -91,12 +190,22 @@ const CustomerForm = () => {
     <div className="tab-content">
       <div className="contact-person-header">
         <h3>Contact Persons</h3>
-        <button className="btn btn-primary">Add Contact Person</button>
+        <button className="btn btn-primary" type="button" onClick={addContactPerson}>Add Contact Person</button>
       </div>
-      <div className="empty-state">
-        <p>No contact persons added yet</p>
-        <p>Click "Add Contact Person" to get started</p>
-      </div>
+      {formData.contactPersons.length === 0 ? (
+        <div className="empty-state">
+          <p>No contact persons added yet</p>
+          <p>Click "Add Contact Person" to get started</p>
+        </div>
+      ) : (
+        formData.contactPersons.map((person, index) => (
+          <div key={index} className="form-group-grid">
+            <input type="text" className="form-input" placeholder="Name" value={person.name} onChange={(e) => updateContactPerson(index, 'name', e.target.value)} />
+            <input type="email" className="form-input" placeholder="Email" value={person.email} onChange={(e) => updateContactPerson(index, 'email', e.target.value)} />
+            <input type="text" className="form-input" placeholder="Phone" value={person.phone} onChange={(e) => updateContactPerson(index, 'phone', e.target.value)} />
+          </div>
+        ))
+      )}
     </div>
   );
 
@@ -104,12 +213,21 @@ const CustomerForm = () => {
     <div className="tab-content">
       <div className="contact-person-header">
         <h3>Custom Fields</h3>
-        <button className="btn btn-primary">Add Custom Field</button>
+        <button className="btn btn-primary" type="button" onClick={addCustomField}>Add Custom Field</button>
       </div>
-      <div className="empty-state">
-        <p>No custom fields configured</p>
-        <p>Add custom fields to capture additional information</p>
-      </div>
+      {formData.customFields.length === 0 ? (
+        <div className="empty-state">
+          <p>No custom fields configured</p>
+          <p>Add custom fields to capture additional information</p>
+        </div>
+      ) : (
+        formData.customFields.map((field, index) => (
+          <div key={index} className="form-group-grid">
+            <input type="text" className="form-input" placeholder="Label" value={field.label} onChange={(e) => updateCustomField(index, 'label', e.target.value)} />
+            <input type="text" className="form-input" placeholder="Value" value={field.value} onChange={(e) => updateCustomField(index, 'value', e.target.value)} />
+          </div>
+        ))
+      )}
     </div>
   );
 
@@ -118,7 +236,7 @@ const CustomerForm = () => {
       <h3>Reporting Tags</h3>
       <div className="form-group">
         <label className="form-label">Tags:</label>
-        <input type="text" className="form-input" placeholder="Enter tags separated by commas" />
+        <input type="text" className="form-input" placeholder="Enter tags separated by commas" value={formData.reportingTags.join(',')} onChange={(e) => handleInputChange('reportingTags', e.target.value.split(','))} />
         <p style={{ color: '#94a3b8', fontSize: '0.875rem', marginTop: '0.5rem' }}>
           Tags help you categorize and filter customers for reporting purposes.
         </p>
@@ -135,6 +253,8 @@ const CustomerForm = () => {
           className="form-textarea" 
           rows="6" 
           placeholder="Add any internal notes or remarks about this customer..."
+          value={formData.remarks}
+          onChange={(e) => handleInputChange('remarks', e.target.value)}
         ></textarea>
       </div>
     </div>
@@ -160,6 +280,7 @@ const CustomerForm = () => {
   };
 
   return (
+    <form onSubmit={submitHandler}>
     <div className="customer-form-container">
       <div className="form-header">
         <h1 className="form-title">Customer Information</h1>
@@ -206,12 +327,17 @@ const CustomerForm = () => {
             Primary Contact <span className="info-icon">ⓘ</span>
           </label>
           <div className="form-group-grid">
-            <select className="form-select">
-              <option>Salutation</option>
-              <option>Mr.</option>
-              <option>Ms.</option>
-              <option>Mrs.</option>
-              <option>Dr.</option>
+            <select className="form-select"
+            value={formData.salutation}
+            onChange={(e)=>handleInputChange('salutation',e.target.value
+
+            )}
+            >
+              <option value="">Select Salutation</option>
+              <option value = "Mr.">Mr.</option>
+              <option value = "Ms.">Ms.</option>
+              <option value = "Mrs.">Mrs.</option>
+              <option value = "Dr.">Dr.</option>
             </select>
             <input 
               type="text" 
@@ -319,9 +445,10 @@ const CustomerForm = () => {
       {/* ACTION BUTTONS */}
       <div className="action-buttons">
         <button className="btn btn-secondary">Cancel</button>
-        <button className="btn btn-primary">Save Customer</button>
+        <button type = "submit" className="btn btn-primary">Save Customer</button>
       </div>
     </div>
+    </form>
   );
 };
 
