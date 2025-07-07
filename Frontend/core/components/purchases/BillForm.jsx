@@ -21,8 +21,20 @@ const BillForm = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+
+    const bill = await fetch("http://localhost:4000/purchases/bill",{
+      method : "POST",
+      header : "application/json",
+      body : JSON.stringify(formData) 
+  })
+    if(!bill.ok) throw new Error("Bill not saved");
+    const data = await bill.json();
+    alert("Bill has been saved :"+ data._id)
     console.log('bill submitted:', formData);
+
+
     // You can now send this data to your backend or state manager
   };
 

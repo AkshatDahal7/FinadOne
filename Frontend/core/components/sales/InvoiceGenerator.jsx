@@ -21,9 +21,34 @@ const InvoiceForm = () => {
     }));
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async(e) => {
+    e.preventDefault();
     console.log('Invoice submitted:', formData);
-    // You can now send this data to your backend or state manager
+    try{
+    const invoice = await fetch("http://localhost:4000/sales/invoice",{
+      method: "POST",
+      headers: "application/json",
+      body: JSON.stringify(formData)
+    })
+    if(!invoice.ok) throw new Error("Invoice failed to save!");
+
+    const data = await invoice.json();
+      alert("Invoice saved" + data._id);
+    setFormData({
+    invoiceNumber: '',
+    customerName: '',
+    companyName: '',
+    amount: '',
+    status: '',
+    dueDate: '',
+    issueDate: '',
+    description: '',
+    paymentDate: ''
+  })
+    }
+    catch(e){
+      console.log(e);
+    }
   };
 
   return (

@@ -22,7 +22,7 @@ router.post('/protected',(req ,res)=>{
 router.post('/sales/customer',customerHandler);
 router.post('/sales/invoice', invoiceHandler);
 router.post('/purchases/bill', billHandler);
-router.post('purchases/vendor', vendorHandler);
+router.post('/purchases/vendor', vendorHandler);
 // router.post('/banking/accounts', accountsHandler);
 // router.post('/banking/transactions', transactionsHandler);
 // router.get('/banking/balance',balanceHandler);
