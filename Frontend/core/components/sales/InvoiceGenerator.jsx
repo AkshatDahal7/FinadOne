@@ -25,7 +25,7 @@ const InvoiceForm = () => {
     e.preventDefault();
     console.log('Invoice submitted:', formData);
     try{
-    const invoice = await fetch("http://localhost:4000/sales/invoice",{
+    const invoice = await fetch("https://finadone.onrender.com/sales/invoice",{
       method: "POST",
       headers: "application/json",
       body: JSON.stringify(formData)

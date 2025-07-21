@@ -35,7 +35,7 @@ const CustomerForm = () => {
   }
     console.log("Submitting formData:", formData);
     try{
-      const customer = await fetch("http://localhost:4000/sales/customer",{
+      const customer = await fetch("https://finadone.onrender.com/sales/customer",{
         method : "POST",
         headers : {"Content-Type": "application/json"},
         body : JSON.stringify(formData),

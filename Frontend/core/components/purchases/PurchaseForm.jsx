@@ -176,7 +176,7 @@ const VendorForm = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const vendor = await fetch("http://localhost:4000/purchases/vendor", {
+      const vendor = await fetch("https://finadone.onrender.com/purchases/vendor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)

@@ -24,7 +24,7 @@ const BillForm = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
 
-    const bill = await fetch("http://localhost:4000/purchases/bill",{
+    const bill = await fetch("https://finadone.onrender.com/purchases/bill",{
       method : "POST",
       group : "application/json",
       body : JSON.stringify(formData) 
