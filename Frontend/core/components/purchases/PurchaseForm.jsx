@@ -192,7 +192,7 @@ const VendorForm = () => {
 
   return (
     <form onSubmit={submitHandler}>
-      <div className="Vendor-form-container">
+      <div className="customer-form-container">
         <div className="form-header">
           <h1 className="form-title">Vendor Information</h1>
         </div>

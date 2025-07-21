@@ -278,6 +278,7 @@ const CustomerForm = () => {
         return renderOtherDetails();
     }
   };
+  
 
   return (
     <form onSubmit={submitHandler}>

@@ -4,8 +4,8 @@ import "./bill.css";
 
 const BillList = () => {
   const [showForm, setShowForm] = useState(false);
-  const [editingInvoice, setEditingInvoice] = useState(null);
-  const [bills, setInvoices] = useState([]);
+  const [editingBill, setEditingBill] = useState(null);
+  const [bills, setBills] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [loading, setLoading] = useState(false);
@@ -15,11 +15,11 @@ const BillList = () => {
     // Simulate API call
     setLoading(true);
     setTimeout(() => {
-      setInvoices([
+      setBills([
         {
           id: 1001,
-          invoiceNumber: "INV-2024-001",
-          customerName: "John Doe",
+          billNumber: "BILL-2024-001",
+          vendorName: "John Doe",
           companyName: "ABC Corporation",
           amount: 5000,
           status: "paid",
@@ -30,8 +30,8 @@ const BillList = () => {
         },
         {
           id: 1002,
-          invoiceNumber: "INV-2024-002",
-          customerName: "Jane Smith",
+          billNumber: "BILL-2024-002",
+          vendorName: "Jane Smith",
           companyName: "XYZ Industries",
           amount: 3500,
           status: "pending",
@@ -42,8 +42,8 @@ const BillList = () => {
         },
         {
           id: 1003,
-          invoiceNumber: "INV-2024-003",
-          customerName: "Mike Johnson",
+          billNumber: "BILL-2024-003",
+          vendorName: "Mike Johnson",
           companyName: "Tech Solutions LLC",
           amount: 2500,
           status: "overdue",
@@ -54,8 +54,8 @@ const BillList = () => {
         },
         {
           id: 1004,
-          invoiceNumber: "INV-2024-004",
-          customerName: "Sarah Wilson",
+          billNumber: "BILL-2024-004",
+          vendorName: "Sarah Wilson",
           companyName: "Design Studio",
           amount: 1200,
           status: "draft",
@@ -66,8 +66,8 @@ const BillList = () => {
         },
         {
           id: 1005,
-          invoiceNumber: "INV-2024-005",
-          customerName: "David Brown",
+          billNumber: "BILL-2024-005",
+          vendorName: "David Brown",
           companyName: "Marketing Pro",
           amount: 4200,
           status: "sent",
@@ -82,59 +82,59 @@ const BillList = () => {
   }, []);
 
   // Handle adding new bill
-  const handleAddInvoice = () => {
-    setEditingInvoice(null);
+  const handleAddBill = () => {
+    setEditingBill(null);
     setShowForm(true);
   };
 
   // Handle editing bill
-  const handleEditInvoice = (bill) => {
-    setEditingInvoice(bill);
+  const handleEditBill = (bill) => {
+    setEditingBill(bill);
     setShowForm(true);
   };
 
   // Handle deleting bill
-  const handleDeleteInvoice = (invoiceId) => {
+  const handleDeleteBill = (billId) => {
     if (window.confirm("Are you sure you want to delete this bill?")) {
-      setInvoices(bills.filter(bill => bill.id !== invoiceId));
+      setBills(bills.filter(bill => bill.id !== billId));
     }
   };
 
   // Handle form submission
-  const handleFormSubmit = (invoiceData) => {
-    if (editingInvoice) {
+  const handleFormSubmit = (billData) => {
+    if (editingBill) {
       // Update existing bill
-      setInvoices(bills.map(bill => 
-        bill.id === editingInvoice.id 
-          ? { ...invoiceData, id: editingInvoice.id }
+      setBills(bills.map(bill => 
+        bill.id === editingBill.id 
+          ? { ...billData, id: editingBill.id }
           : bill
       ));
     } else {
       // Add new bill
-      const newInvoice = {
-        ...invoiceData,
+      const newBill = {
+        ...billData,
         id: Date.now(), // Simple ID generation
-        invoiceNumber: `INV-2024-${String(bills.length + 1).padStart(3, '0')}`,
+        billNumber: `BILL-2024-${String(bills.length + 1).padStart(3, '0')}`,
         status: "draft",
         issueDate: new Date().toISOString().split('T')[0],
         paymentDate: null
       };
-      setInvoices([...bills, newInvoice]);
+      setBills([...bills, newBill]);
     }
     setShowForm(false);
-    setEditingInvoice(null);
+    setEditingBill(null);
   };
 
   // Handle going back from form
   const handleBackToList = () => {
     setShowForm(false);
-    setEditingInvoice(null);
+    setEditingBill(null);
   };
 
   // Handle status change
-  const handleStatusChange = (invoiceId, newStatus) => {
-    setInvoices(bills.map(bill => 
-      bill.id === invoiceId 
+  const handleStatusChange = (billId, newStatus) => {
+    setBills(bills.map(bill => 
+      bill.id === billId 
         ? { 
             ...bill, 
             status: newStatus,
@@ -145,10 +145,10 @@ const BillList = () => {
   };
 
   // Filter bills based on search and status
-  const filteredInvoices = bills.filter(bill => {
+  const filteredBills = bills.filter(bill => {
     const matchesSearch = 
-      bill.invoiceNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      bill.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      bill.billNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      bill.vendorName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       bill.companyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
       bill.description.toLowerCase().includes(searchTerm.toLowerCase());
     
@@ -188,11 +188,11 @@ const BillList = () => {
 
   if (showForm) {
     return (
-      <InvoiceForm 
-        bill={editingInvoice}
+      <BillForm 
+        bill={editingBill}
         onSubmit={handleFormSubmit}
         onBack={handleBackToList}
-        isEditing={!!editingInvoice}
+        isEditing={!!editingBill}
       />
     );
   }
@@ -205,7 +205,7 @@ const BillList = () => {
           <h1>Bill Management</h1>
           <p>Create, manage and track your bills</p>
         </div>
-        <button className="btn btn-primary add-bill-btn" onClick={handleAddInvoice}>
+        <button className="btn btn-primary add-bill-btn" onClick={handleAddBill}>
           <span className="btn-icon">+</span>
           Create bill
         </button>
@@ -265,7 +265,7 @@ const BillList = () => {
             <div className="spinner"></div>
             <p>Loading bills...</p>
           </div>
-        ) : filteredInvoices.length === 0 ? (
+        ) : filteredBills.length === 0 ? (
           <div className="empty-state">
             <div className="empty-icon">📄</div>
             <h3>No bills found</h3>
@@ -276,7 +276,7 @@ const BillList = () => {
               }
             </p>
             {!searchTerm && filterStatus === "all" && (
-              <button className="btn btn-primary" onClick={handleAddInvoice}>
+              <button className="btn btn-primary" onClick={handleAddBill}>
                 Create Your First bill
               </button>
             )}
@@ -297,17 +297,17 @@ const BillList = () => {
 
               {/* Table Body */}
               <div className="table-body">
-                {filteredInvoices.map((bill) => (
+                {filteredBills.map((bill) => (
                   <div key={bill.id} className={`table-row ${isOverdue(bill) ? 'row-overdue' : ''}`}>
                     <div className="table-cell">
                       <div className="bill-info">
-                        <div className="bill-number">{bill.invoiceNumber}</div>
+                        <div className="bill-number">{bill.billNumber}</div>
                         <div className="bill-description">{bill.description}</div>
                       </div>
                     </div>
                     <div className="table-cell">
-                      <div className="customer-info">
-                        <div className="customer-name">{bill.customerName}</div>
+                      <div className="vendor-info">
+                        <div className="vendor-name">{bill.vendorName}</div>
                         <div className="company-name">{bill.companyName}</div>
                       </div>
                     </div>
@@ -344,7 +344,7 @@ const BillList = () => {
                       <div className="action-buttons">
                         <button
                           className="btn btn-sm btn-secondary"
-                          onClick={() => handleEditInvoice(bill)}
+                          onClick={() => handleEditBill(bill)}
                           title="Edit bill"
                         >
                           Edit
@@ -358,7 +358,7 @@ const BillList = () => {
                         </button>
                         <button
                           className="btn btn-sm btn-danger"
-                          onClick={() => handleDeleteInvoice(bill.id)}
+                          onClick={() => handleDeleteBill(bill.id)}
                           title="Delete bill"
                         >
                           Delete
@@ -372,9 +372,9 @@ const BillList = () => {
 
             {/* Results Summary */}
             <div className="results-summary">
-              Showing {filteredInvoices.length} of {bills.length} bills
+              Showing {filteredBills.length} of {bills.length} bills
               <span className="total-amount">
-                Total: ${filteredInvoices.reduce((sum, inv) => sum + inv.amount, 0).toLocaleString()}
+                Total: ${filteredBills.reduce((sum, inv) => sum + inv.amount, 0).toLocaleString()}
               </span>
             </div>
           </>
